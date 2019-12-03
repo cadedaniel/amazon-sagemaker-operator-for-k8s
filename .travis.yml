@@ -4,6 +4,10 @@ jobs:
     - stage: "Build SMLogs"
       os: osx
       go: 1.12.x
+      cache:
+        directories:
+          - $HOME/.cache/go-build
+          - $HOME/gopath/pkg/mod
       env:
         - GO111MODULE=on
       script:
