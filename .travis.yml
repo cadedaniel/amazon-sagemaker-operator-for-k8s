@@ -1,7 +1,18 @@
-os: osx
-osx_image: xcode11.2	
+language: go
+jobs:
+  include:
+    - stage: "Build SMLogs"
+      os: osx
+      go: 1.12.x
+      env:
+        - GO111MODULE=on
+      script:
+        - make
+        - cd smlogs-kubectl-plugin && make build-release
 
-addons:
-  homebrew:
-    packages:
-    - go@1.12
+    - stage: "Test"
+      name: "Run Integration Tests"
+      os: osx
+      go: 1.12.x
+      script:
+        - echo "Here is where we do the testing"
