@@ -1,12 +1,13 @@
 os: osx
 language: minimal
+sudo: required
 jobs:
   include:
     - stage: "Install smlogs"
       script:
         - wget https://amazon-sagemaker-operator-for-k8s-us-east-1.s3.amazonaws.com/kubectl-smlogs-plugin/latest/darwin.amd64.tar.gz
         - tar xvzf darwin.amd64.tar.gz
-        - cp ./kubectl-smlogs.darwin.amd64/kubectl-smlogs /usr/bin
+        - sudo cp ./kubectl-smlogs.darwin.amd64/kubectl-smlogs /usr/bin
 
     - stage: "Test"
       name: "Test smlogs"
