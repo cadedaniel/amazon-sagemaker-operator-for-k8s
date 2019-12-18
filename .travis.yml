@@ -1,21 +1,15 @@
 os: osx
-go: 1.12.x
-language: go
+language: minimal
 jobs:
   include:
-    - stage: "Build SMLogs"
-      cache:
-        directories:
-          - $HOME/.cache/go-build
-          - $HOME/gopath/pkg/mod
-      env:
-        - GO111MODULE=on
+    - stage: "Install smlogs"
       script:
-        - make
-        - cd smlogs-kubectl-plugin && make build-release
+        - wget https://amazon-sagemaker-operator-for-k8s-us-east-1.s3.amazonaws.com/kubectl-smlogs-plugin/latest/darwin.amd64.tar.gz
+        - tar xvzf darwin.amd64.tar.gz
+        - cp ./kubectl-smlogs.darwin.amd64/kubectl-smlogs /usr/bin
 
     - stage: "Test"
-      name: "Run Integration Tests"
+      name: "Test smlogs"
       script:
         - echo "Here is where we do the testing"
-        - find .
+        - kubectl-smlogs -h
