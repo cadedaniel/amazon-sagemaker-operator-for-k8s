@@ -1,16 +1,20 @@
 os: osx
 language: minimal
-sudo: required
 jobs:
   include:
     - stage: "Install smlogs"
+      cache:
+          directories:
+              - $HOME/sagemaker-k8s-bin
       script:
         - wget https://amazon-sagemaker-operator-for-k8s-us-east-1.s3.amazonaws.com/kubectl-smlogs-plugin/latest/darwin.amd64.tar.gz
         - tar xvzf darwin.amd64.tar.gz
-        - sudo cp ./kubectl-smlogs.darwin.amd64/kubectl-smlogs /usr/bin
+        - mkdir ~/sagemaker-k8s-bin
+        - cp ./kubectl-smlogs.darwin.amd64/kubectl-smlogs $HOME/sagemaker-k8s-bin/
 
     - stage: "Test"
       name: "Test smlogs"
       script:
         - echo "Here is where we do the testing"
+        - PATH=$PATH:$HOME/sagemaker-k8s-bin
         - kubectl-smlogs -h
