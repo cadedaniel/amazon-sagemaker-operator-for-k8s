@@ -16,5 +16,4 @@ jobs:
       name: "Test smlogs"
       script:
         - echo "Here is where we do the testing"
-        - PATH=$PATH:$HOME/sagemaker-k8s-bin
-        - kubectl-smlogs -h
+        - PATH=$PATH:$HOME/sagemaker-k8s-bin kubectl-smlogs -h
