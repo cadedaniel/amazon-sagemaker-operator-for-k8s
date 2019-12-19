@@ -9,7 +9,7 @@ jobs:
       script:
         - wget https://amazon-sagemaker-operator-for-k8s-us-east-1.s3.amazonaws.com/kubectl-smlogs-plugin/latest/darwin.amd64.tar.gz
         - tar xvzf darwin.amd64.tar.gz
-        - mkdir ~/sagemaker-k8s-bin
+        - mkdir $HOME/sagemaker-k8s-bin
         - cp ./kubectl-smlogs.darwin.amd64/kubectl-smlogs $HOME/sagemaker-k8s-bin/
 
     - stage: "Test"
